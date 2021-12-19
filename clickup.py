@@ -43,6 +43,10 @@ def move_candidate_task(stage, task_id):
         "Started": "104289688",
         "Did Not Start": "104289690"
     }
+    try:
+        x = stages[stage]
+    except:
+        return task_id
     task = requests.get("https://api.clickup.com/api/v2/task/" + task_id + "/", headers=headers).json()
     body = {
         "name": task["name"],
