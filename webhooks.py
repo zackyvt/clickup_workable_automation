@@ -44,7 +44,9 @@ def setup_candidate_moved_webhook():
 
 def delete_webhooks():
     requests.request("DELETE", endpoint + "/" + db.get("candidate_created_webhook_id"), headers=headers)
+    db.delete("candidate_created_webhook_id")
     requests.request("DELETE", endpoint + "/" + db.get("candidate_moved_webhook_id"), headers=headers)
+    db.delete("candidate_moved_webhook_id")
 
 setup_candidate_created_webhook()
 setup_candidate_moved_webhook()
