@@ -61,10 +61,13 @@ def set_stage_description(description, stage, profile_url):
     for i in range(len(lines)):
         if "Workable Profile" in lines[i]:
             lines[i] = "[Workable Profile](" + profile_url + ")"
+            continue
         if len(lines[i].split(":")) == 2:
-            lines[i] = "**" + lines[i].split(":")[0] + ":** " + lines[i].split(":")[1] 
+            lines[i] = "**" + lines[i].split(":")[0] + ":** " + lines[i].split(":")[1]
+            continue
         if "Stage" in lines[i]:
             lines[i] = "**Stage:** " + stage
+            continue
     return "\n".join(lines)
 
 def move_candidate_task(stage, task_id, profile_url):
