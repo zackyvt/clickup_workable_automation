@@ -22,7 +22,7 @@ def index():
 @app.route('/candidate_created', methods=["POST"])
 def candidate_created():
     data = request.get_json()["data"]
-    task_id = create_candidate_task(data["name"], data["headline"], data["phone"], data["email"])
+    task_id = create_candidate_task(data["name"], "" if data["headline"] is None else data["headline"], data["phone"], data["email"], data["address"], data["stage"], "" if data["summary"] is None else data["summary"], data["id"], "" if data["resume_url"] is None else data["resume_url"])
     db.set(data["id"], task_id)
     return "OK"
 
@@ -30,7 +30,7 @@ def candidate_created():
 def candidate_moved():
     data = request.get_json()["data"]
     if(db.get(data["id"]) == None):
-        task_id = create_candidate_task(data["name"], data["headline"], data["phone"], data["email"])
+        task_id = create_candidate_task(data["name"], "" if data["headline"] is None else data["headline"], data["phone"], data["email"], data["address"], data["stage"], "" if data["summary"] is None else data["summary"], data["id"], "" if data["resume_url"] is None else data["resume_url"])
         db.set(data["id"], task_id)
     task_id = move_candidate_task(data["stage"], str(db.get(data["id"])))
     db.set(data["id"], task_id)
