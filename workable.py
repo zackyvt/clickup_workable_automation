@@ -30,7 +30,7 @@ def load_all_entries():
     for candidate in candidates:
         if candidate["stage"] == "" or candidate["stage"] == "":
             continue
-        task_id = clickup.create_candidate_task(candidate["name"], "" if candidate["headline"] is None else candidate["headline"], "" if candidate["phone"] is None else candidate["phone"], candidate["email"], "" if candidate["address"] is None else candidate["address"], candidate["stage"], "" if candidate["summary"] is None else candidate["summary"], candidate["profile_url"], "" if candidate["resume_url"] is None else candidate["resume_url"], "" if candidate["location"]["location_str"] is None else candidate["location"]["location_str"], candidate["job"]["title"], candidate["skills"])
+        task_id = clickup.create_candidate_task(candidate["name"], "-" if candidate["headline"] is None else candidate["headline"], "-" if candidate["phone"] is None else candidate["phone"], candidate["email"], "-" if candidate["address"] is None else candidate["address"], candidate["stage"], "-" if candidate["summary"] is None else candidate["summary"], candidate["profile_url"], "-" if candidate["resume_url"] is None else candidate["resume_url"], "-" if candidate["location"]["location_str"] is None else candidate["location"]["location_str"], candidate["job"]["title"], candidate["skills"])
         task_id = clickup.move_candidate_task(candidate["stage"], task_id)
         db.set(candidate["id"], task_id)
 
