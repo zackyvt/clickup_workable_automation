@@ -14,8 +14,8 @@ def create_description(candidate_name, job_title, phone, email, address, stage, 
     description += "[Resume](" + resume_url + ")\n"
     description += "\n"
     description += "**Name:** " + candidate_name + "\n"
+    description += "**Headline:** " + job_title + "\n"
     description += "**Applying For:** " + applied_position + "\n"
-    description += "**Job Title:** " + job_title + "\n"
     description += "**Stage:** " + stage + "\n"
     description += "\n"
     description += "**Address:** " + address + "\n"
@@ -23,7 +23,7 @@ def create_description(candidate_name, job_title, phone, email, address, stage, 
     description += "**Phone:** " + phone + "\n"
     description += "**Email:** " + email + "\n"
     description += "\n"
-    description += "**Skills: **" + ", ".join(list(map(lambda x: x["name"], skills))) + "\n"
+    description += "**Skills: **" + ", ".join(list(map(lambda x: x["name"], skills))) + "\n\n"
     description += "**Summary:**\n"
     description += summary
     return description
@@ -31,7 +31,7 @@ def create_description(candidate_name, job_title, phone, email, address, stage, 
 def create_candidate_task(candidate_name, job_title, phone, email, address, stage, summary, profile_url, resume_url, location_str, applied_position, skills):
     endpoint = "https://api.clickup.com/api/v2/list/104289666/task"
     body = {
-        "name": candidate_name + " - " + job_title,
+        "name": candidate_name + " - " + applied_position,
         "markdown_description": create_description(candidate_name, job_title, phone, email, address, stage, summary, profile_url, resume_url, location_str, applied_position, skills),
         "custom_fields": [
             {
