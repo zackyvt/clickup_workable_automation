@@ -21,6 +21,7 @@ def index():
 
 @app.route('/candidate_created', methods=["POST"])
 def candidate_created():
+    print(request.get_json())
     data = request.get_json()["candidate"]
     task_id = create_candidate_task(data["name"], data["headline"], data["phone"], data["email"])
     db.set(data["id"], task_id)
@@ -28,6 +29,7 @@ def candidate_created():
 
 @app.route('/candidate_moved', methods=["POST"])
 def candidate_moved():
+    print(request.get_json())
     data = request.get_json()["candidate"]
     task_id = move_candidate_task(data["stage"], str(db.get(data["id"])))
     db.set(data["id"], task_id)
