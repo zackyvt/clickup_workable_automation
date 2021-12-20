@@ -14,7 +14,7 @@ def create_description(candidate_name, job_title, phone, email, address, stage, 
     description += "[Resume](" + resume_url + ")\n"
     description += "\n"
     description += "**Name:** " + candidate_name + "\n"
-    description += "**Applying For:**" + applied_position + "\n"
+    description += "**Applying For:** " + applied_position + "\n"
     description += "**Job Title:** " + job_title + "\n"
     description += "**Stage:** " + stage + "\n"
     description += "\n"
