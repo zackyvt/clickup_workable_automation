@@ -41,7 +41,9 @@ def move_candidate_task(stage, task_id):
         "Approved to Start": "104289680",
         "Start Date Confirmed": "104289685",
         "Started": "104289688",
-        "Did Not Start": "104289690"
+        "Did Not Start": "104289690",
+        "Offer": "dfz86-667",
+        "Background": "dfz86-707"
     }
     try:
         x = stages[stage]

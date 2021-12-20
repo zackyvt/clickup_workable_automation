@@ -29,6 +29,9 @@ def candidate_created():
 @app.route('/candidate_moved', methods=["POST"])
 def candidate_moved():
     data = request.get_json()["data"]
+    if(db.get(data["id"]) == None):
+        task_id = create_candidate_task(data["name"], data["headline"], data["phone"], data["email"])
+        db.set(data["id"], task_id)
     task_id = move_candidate_task(data["stage"], str(db.get(data["id"])))
     db.set(data["id"], task_id)
     return "OK"
