@@ -57,13 +57,6 @@ def create_candidate_task(candidate_name, job_title, phone, email, address, stag
     r = requests.post(url=endpoint, json=body, headers=headers)
     return r.json()["id"]
 
-def set_stage_description(description, stage):
-    lines = description.split("\n")
-    for i in range(len(lines)):
-        if "Stage" in lines[i]:
-            lines[i] = "**Stage:** " + stage
-    return "\n".join(lines)
-
 def move_candidate_task(stage, task_id):
     stages = {
         "Approved to Start": "104289680",
@@ -76,7 +69,7 @@ def move_candidate_task(stage, task_id):
     task = requests.get("https://api.clickup.com/api/v2/task/" + task_id + "/", headers=headers).json()
     body = {
         "name": task["name"],
-        "markdown_description": "" if task["description"] is None else set_stage_description(task["description"], stage),
+        "markdown_description": create_description(task["name"], "" if task["headline"] is None else task["headline"], "" if task["phone"] is None else task["phone"], task["email"], "" if task["address"] is None else task["address"], task["stage"], "" if task["summary"] is None else task["summary"], task["profile_url"], "" if task["resume_url"] is None else task["resume_url"], "" if task["location"]["location_str"] is None else task["location"]["location_str"], task["job"]["title"], task["skills"]),
         "assignees": list(map(lambda assignees: assignees["id"], task["assignees"])),
         "custom_fields": task["custom_fields"]
     }
