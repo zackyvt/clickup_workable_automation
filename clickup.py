@@ -28,7 +28,7 @@ def create_description(candidate_name, job_title, phone, email, address, stage, 
     return description
 
 def create_candidate_task(candidate_name, job_title, phone, email, address, stage, summary, profile_url, resume_url, location_str, applied_position, skills):
-    endpoint = "https://api.clickup.com/api/v2/list/104289666/task"
+    endpoint = "https://api.clickup.com/api/v2/list/157768892/task"
     body = {
         "name": candidate_name + " - " + applied_position,
         "markdown_description": create_description(candidate_name, job_title, phone, email, address, stage, summary, profile_url, resume_url, location_str, applied_position, skills),
