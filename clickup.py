@@ -54,6 +54,7 @@ def create_candidate_task(candidate_name, job_title, phone, email, address, stag
         ]
     }
     r = requests.post(url=endpoint, json=body, headers=headers)
+    print(r.json())
     return r.json()["id"]
 
 def set_stage_description(description, stage, profile_url):
