@@ -34,6 +34,16 @@ def create_candidate_task(candidate_name, job_title, phone, email, address, stag
         "markdown_description": create_description(candidate_name, job_title, phone, email, address, stage, summary, profile_url, resume_url, location_str, applied_position, skills),
         "custom_fields": [
             {
+                "id": "979fb074-2ee0-4855-8236-6f8029c29c52",
+                "name": "Candidate Name",
+                "type": "short_text",
+                "type_config": {},
+                "date_created": "1640110971688",
+                "hide_from_guests": False,
+                "value": candidate_name,
+                "required": False
+            },
+            {
                 "id": "9ab84d7a-4096-459e-b0ec-04a4259a3dba",
                 "name": "Candidate Personal Email",
                 "type": "email",
